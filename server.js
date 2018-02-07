@@ -12,7 +12,7 @@ var connection = mysql.createConnection({
 connection.connect();
 
 function getMovies(callback) {    
-        connection.query("SELECT * FROM movie_db.movies",
+        connection.query("SELECT * FROM movie_db.moviereview",
             function (err, rows) {
                 callback(err, rows); 
             }
@@ -22,7 +22,7 @@ function getMovies(callback) {
 // Implement the movies API endpoint
 app.get('/movies', function(req, res){
 
-    connection.query("select m.title, m.release, m.score, r.name as reviewer, p.name as publication from movie_db.movies m, movie_db.reviewers r, movie_db.publications p where r.publication=p.name and m.reviewer=r.name",function(err, rows){
+    connection.query("select m.title, m.release, m.score, r.name as reviewer, p.name as publication from movie_db.moviereview m, movie_db.reviewers r, movie_db.publications p where r.publication=p.name and m.reviewer=r.name",function(err, rows){
         res.json(rows);
     });  
 })
