@@ -27,10 +27,16 @@ app.get('/movies', function(req, res){
     });  
 })
 
-app.get('/', function(req, res, next) {   
+app.get('/', function(req, res, next) {
+
     //now you can call the get-driver, passing a callback function
     getMovies(function (err, moviesResult){ 
-       //you might want to do something is err is not null...      
+        
+        if(err) {
+            console.log(err);
+            return;
+        }
+
        res.json(moviesResult);
 
     });
