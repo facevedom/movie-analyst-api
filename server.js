@@ -68,7 +68,7 @@ app.get('/publications', function(req, res){
 // Implement the pending reviews API endpoint
 app.get('/pending', function(req, res){
   // Get a list of pending movie reviews
-     connection.query("select m.title, m.release, m.score, r.name as reviewer, p.name as publication from movie_db.movies m, movie_db.reviewer r, movie_db.publication p where r.publication=p.name and m.reviewer=r.name and m.release=2018",function(err, rows){
+     connection.query("select m.title, m.release, m.score, r.name as reviewer, p.name as publication from movie_db.moviereview m, movie_db.reviewer r, movie_db.publication p where r.publication=p.name and m.reviewer=r.name and m.release=2018",function(err, rows){
         res.json(rows);
     });  
 })
